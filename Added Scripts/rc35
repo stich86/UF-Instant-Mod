@@ -1,0 +1,15 @@
+echo 'Turn on phy power...'
+bin/diag port set phy-force-power-down port all state disable
+/bin/echo 2048 > /proc/sys/vm/min_free_kbytes
+lan_sds_mode=`flash get LAN_SDS_MODE | sed 's/LAN_SDS_MODE=//g'`
+
+if [ $lan_sds_mode == "4" ]; then
+   echo 'Fix upload issue for HiSGMII...'
+   /bin/diag bandwidth set egress port all rate 4194296
+   /bin/diag bandwidth set ingress port all rate 4194296
+fi
+if [ $lan_sds_mode == "5" ]; then
+   echo 'Fix upload issue for HiSGMII...'
+   /bin/diag bandwidth set egress port all rate 4194296
+   /bin/diag bandwidth set ingress port all rate 4194296
+fi
