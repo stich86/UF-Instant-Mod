@@ -8,3 +8,7 @@ Please refer to Anime4000 repo for all other information and compatible sticks
 https://github.com/Anime4000/RTL960x/
 
 GUI on the modded firmware was made by Anime4000 :)
+
+# Original firmwares from Ubiquiti
+
+All files were extracted from OLT original firmware. *rootfs* files can be extracted with *unsquashfs* (parts of squashfs-tools)
