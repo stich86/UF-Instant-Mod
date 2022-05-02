@@ -69,3 +69,14 @@ To avoid this problem there are two solution:
 2 - disable `bootlimit` env setting it to `0`. Can be done with command `nv set bootlimit 0` on Linux OS\
 
 I prefer first solution, because if you screw up the `mtd3` partition with wrongs values, doing a fast swap for ten times (so avoid full Linux OS boot) will erase config partition an start the stick in factory default
+
+# Factory default parameters
+
+Env           | Value
+--------------| -----
+`LAN_SDS_MODE`  | `1 (Fiber 1G)`
+`IP_ADDRESS`    | `192.168.1.1`
+`PON_MODE`      | `1 (GPON)`
+`WAN_MODE`      | `1`
+`PASSWORD`      | `admin`
+
