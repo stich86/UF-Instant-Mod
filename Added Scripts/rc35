@@ -13,3 +13,4 @@ if [ $lan_sds_mode == "5" ]; then
    /bin/diag bandwidth set egress port all rate 4194296
    /bin/diag bandwidth set ingress port all rate 4194296
 fi
+nv setenv bootcount 0
