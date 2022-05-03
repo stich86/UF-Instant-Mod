@@ -116,9 +116,10 @@ Now make sure you have `nc` command on your computer and follow this steps to wr
 - when done, on the telnet\ssh session your `nc` command has exited, you have a file called `mtd7` (or `mtd5`), run an md5sum on that file and compare the md5 with the original one, ONLY IF these are equal proceed with the next step
 - now we need to erase `mtd3` (config) and `mtd7` (rootfs of image1) with these commands: `flash_eraseall mtd3` && `flash_eraseall mtd7` (replace with `mtd5` if you are doing from `image1`)
 - after each erase complete, you should still into `/tmp` directory and run this command: `cat mtd7 > /dev/mtd7` (replace with `mtd5` if you are doing from `image1`)
-- if there is no output error, now we can activate the new rootfs and reboot on it. To do this execute this command: `nv setenv sw_active 1` && `nv setenv sw_commit 1` && `reboot`
-- after abount 2 minutes you should reach the stick via WebUI or telnet at IP `192.168.1.1`. NOTE: WebUI doesn't work if there is no fiber attached
-- If everything is working (obviously you have to setup the stick in the right way, I mean change GPON s/n, OLT mode and so on), you can follow the same proceedure for the other bank
+- if there is no output error, we can activate the new rootfs and reboot on it. To do this run these commands: `nv setenv sw_active 1` && `nv setenv sw_commit 1` && `reboot`
+- after about 2 minutes you should reach the stick via WebUI or telnet at IP `192.168.1.1`. NOTE: WebUI doesn't work if there is no fiber attached
+
+If everything is working (obviously you have to setup the stick in the right way, I mean change GPON s/n, OLT mode and so on), you can follow the same proceedure for the other bank, or leave untouched so it's possible to restore the stick to it's factory default just doing a `cat` of original rootFS to the modified one. Please rember that if you want to go back stock, it's mandatory to erase `mtd3` partion, otherwise the stick cannot but successfully.
 
 # Basic configuration of the stick
 
