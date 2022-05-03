@@ -132,3 +132,17 @@ Here is a example of commands that you can do via telnet to configure the stick,
 ```
 
 For a full list and explanation, please refert to Anime4000 repo here: https://github.com/Anime4000/RTL960x/blob/main/Docs/FLASH_GETSET_INFO.md
+
+# Customize RootFS
+
+If you want, you can unsquash the custom RootFS and customized as you like (may be you want change WebUI colors or something else).
+Remember to unsquash the file with `root` users because there are some special files that need super user permission, here is the two commands to extract/repack the file that then can be flashed on the stick:
+
+*extract*
+
+`unsquashfs rootfs_MOD_UFINST_220505`
+this will create a folder called `squashfs-root` where you will find all the OS files inside
+
+*repack*
+
+`mksquashfs squashfs-root rootfs_MOD_UFINST_XXYYZZ -b 131072 -comp lzma`
