@@ -60,12 +60,12 @@ Env         | Value | Boot Bank
 
 # Factory reset after 10 boot
 
-The stick with original firmware and without any other modification, use an u-Boot env called `bootlimit` that is configured with a value of 10. There is another variable called `bootcount`, this one is increased on each CPU reset. When `bootlimit == bootcount`, u-Boot format partition `mtd3` and tries to download new configuration from tftpboot. With the modified firmware, that is using `mtd3` for configuration, create a little headache.
+The stick with original firmware and without any other modification, use an u-Boot env called `bootlimit` that is configured with a value of `10`. There is another variable called `bootcount`, this one is increased on each CPU reset. When `bootlimit == bootcount`, u-Boot format partition `mtd3` and tries to download new configuration from tftpboot. With the modified firmware, that is using `mtd3` for configuration, create a little headache.
 
 To avoid this problem there are two solutions:
 
 1 - reset `bootcount` env on each boot of Linux OS, adding the command `nv setenv bootcount 0` on `rc35` file\
-2 - disable `bootlimit` env setting it to `0`. Can be done with command `nv set bootlimit 0` on Linux OS
+2 - disable `bootlimit` env setting it to `0`. Can be done with command `nv setenv bootlimit 0` on Linux OS
 
 I prefer first approach, because if you screw up the `mtd3` partition with wrongs values, doing a fast swap for ten times (avoiding full Linux OS boot) will erase config partition and after OS boot, all parameters return to factory defaults
 
