@@ -119,7 +119,7 @@ Now make sure you have `nc` command on your computer and follow this steps to wr
 - if there is no output error, we can activate the new rootfs and reboot on it. To do this run these commands: `nv setenv sw_active 1` && `nv setenv sw_commit 1` && `reboot`
 - after about 2 minutes you should reach the stick via WebUI or telnet at IP `192.168.1.1`. NOTE: WebUI doesn't work if there is no fiber attached
 
-If everything is working (obviously you have to setup the stick in the right way, I mean change GPON s/n, OLT mode and so on), you can follow the same proceedure for the other bank, or leave untouched so it's possible to restore the stick to it's factory default just doing a `cat` of original rootFS to the modified one. Please rember that if you want to go back stock, it's mandatory to erase `mtd3` partion, otherwise the stick cannot but successfully.
+If everything is working (obviously you have to setup the stick in the right way, I mean change GPON s/n, OLT mode and so on), you can follow the same proceedure for the other bank, or leave untouched. This will give you a fast way to restore the stick to its factory default just doing a `cat` of original rootFS to the modified one. Please rember that if you go back to stock firmware, it's mandatory to erase `mtd3` partion BEFORE rebooting.
 
 # Basic configuration of the stick
 
