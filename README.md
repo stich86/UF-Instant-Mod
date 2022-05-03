@@ -14,7 +14,7 @@ All files were extracted from OLT original firmware. *rootfs* files can be extra
 
 # Partition Layout
 
-Layout of MTD of UF-INSTANT is a little bit different from other Realtek Stick:
+MTD layout of UF-INSTANT is a little bit different from other Realtek Stick:
 
 ```
 # cat /proc/mtd
