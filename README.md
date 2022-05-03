@@ -8,7 +8,7 @@ GUI on the modded firmware was made by Anime4000 :)
 # All mods are just for fun, I am absolutely not responsible if your stick will die after the procedure :)
 
 
-# Original firmwares from Ubiquiti
+# Original Firmwares from Ubiquiti 
 
 All files were extracted from OLT original firmware. *rootfs* files can be extracted with *unsquashfs* (parts of squashfs-tools)
 
