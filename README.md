@@ -80,6 +80,7 @@ Env           | Value
 `PASSWORD`      | `admin`
 
 # Flashing Custom Root FS
+# MAKE SURE TO HAVE A BACKUP OF EACH MTD PARTITION BEFORE PROCEED!
 
 If you have stick with stock firmware, you can login using ssh\telnet to IP `192.168.1.1` with these credentials `ubnt/ubnt`\
 Verify with this command the installed images:
