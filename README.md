@@ -1,13 +1,12 @@
 # Modify Ufiber UF-Instant
 
-This repo will contains modified RootFS and files used to convert UF-Instant SFP GPON stick from Vendor Lock-in to UFiber production to an open solution
-GPON SFP is based on Realtek RTL9601CI chip. On the market there are ready OOB alternative, all mods are just for fun.
-
-Please refer to Anime4000 repo for all other informations and compatible sticks
-
-https://github.com/Anime4000/RTL960x/
-
+This repo will contains modified RootFS and files used to convert UF-INSTANT SFP GPON stick from *Vendor Lock-in on UFiber products* to an open solution
+that can interact with 3rd party OLT. 
+Please note that on the market there are ready OOB (out-of-the-box) alternatives, you can take a lot at [Anime4000](https://github.com/Anime4000/RTL960x/) repo with all other information and compatible sticks. 
 GUI on the modded firmware was made by Anime4000 :)
+
+# All mods are just for fun, I am absolutely not responsible if your stick will die after the procedure :)
+
 
 # Original firmwares from Ubiquiti
 
@@ -68,7 +67,7 @@ To avoid this problem there are two solutions:
 1 - reset `bootcount` env on each boot of Linux OS, adding the command `nv setenv bootcount 0` on `rc35` file\
 2 - disable `bootlimit` env setting it to `0`. Can be done with command `nv set bootlimit 0` on Linux OS
 
-I prefer first approach, because if you screw up the `mtd3` partition with wrongs values, doing a fast swap for ten times (avoiding full Linux OS boot) will erase config partition and in sequential boot restore factory defaults
+I prefer first approach, because if you screw up the `mtd3` partition with wrongs values, doing a fast swap for ten times (avoiding full Linux OS boot) will erase config partition and after OS boot, all parameters return to factory defaults
 
 # Factory default parameters
 
