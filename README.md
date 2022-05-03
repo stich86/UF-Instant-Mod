@@ -80,3 +80,55 @@ Env           | Value
 `WAN_MODE`      | `1`
 `PASSWORD`      | `admin`
 
+# Flashing Custom Root FS
+
+If you have stick with stock firmware, you can login using ssh\telnet to IP `192.168.1.1` with these credentials `ubnt/ubnt`\
+Verify with this command the installed images:
+
+`nv getenv | grep sw_ver`
+
+You should have an output like this:
+
+```
+sw_version0=v4.3.1.913-d48.210415.0811
+sw_version1=v4.3.1.913-d48.210415.0811
+```
+
+So in this case the stick has already version `4.3.1` onboard (we will just need to preserv k0/k1 partitions). Now verify which boot bank are you using with this command:
+
+`nv getenv | egrep "sw_active=|sw_commit="`
+
+You should have an output like this:
+
+```
+sw_active=0
+sw_commit=0
+```
+
+We are currently running `image0` on `mtd4/5` (refer to partition layout)
+
+Now make sure you have `nc` command on your computer and follow this steps to write custom image on `image1` partition
+
+- on the telnet\ssh session on UF-INSTANT, go to `cd /tmp`
+- run this command: `nc -l -p 1234 > mtd7` (if you are on `image1`, use `mtd5` as name)
+- on your computer, go where the custom root fs is downloaded `rootfs_MOD_UFINST_220505` (you can found it under folder *Modified RootFS* - md5 4ae50a56f5c4768ea5ac95d4298a01ba)
+- run this command: `nc 192.168.1.1 1234 < rootfs_MOD_UFINST_220505`
+- when done, on the telnet\ssh session your `nc` command has exited, you have a file called `mtd7` (or `mtd5`), run an md5sum on that file and compare the md5 with the original one, ONLY IF these are equal proceed with the next step
+- now we need to erase `mtd3` (config) and `mtd7` (rootfs of image1) with these commands: `flash_eraseall mtd3` && `flash_eraseall mtd7` (replace with `mtd5` if you are doing from `image1`)
+- after each erase complete, you should still into `/tmp` directory and run this command: `cat mtd7 > /dev/mtd7` (replace with `mtd5` if you are doing from `image1`)
+- if there is no output error, now we can activate the new rootfs and reboot on it. To do this execute this command: `nv setenv sw_active 1` && `nv setenv sw_commit 1` && `reboot`
+- after abount 2 minutes you should reach the stick via WebUI or telnet at IP `192.168.1.1`. NOTE: WebUI doesn't work if there is no fiber attached
+- If everything is working (obviously you have to setup the stick in the right way, I mean change GPON s/n, OLT mode and so on), you can follow the same proceedure for the other bank
+
+# Basic configuration of the stick
+
+Here is a example of commands that you can do via telnet to configure the stick, on each change a reboot is mandatory to apply:
+
+```
+  flash set GPON_SN YOURSN
+  flash set OMCI_FAKE_OK 1
+  flash set OMCI_OLT_MODE 1
+  flash set PON_VENDOR_ID HWTC
+```
+
+For a full list and explanation, please refert to Anime4000 repo here: https://github.com/Anime4000/RTL960x/blob/main/Docs/FLASH_GETSET_INFO.md
