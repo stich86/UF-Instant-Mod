@@ -44,6 +44,11 @@ mtd13: 004b0000 00001000 "rootfs"
 *mtd9 -> partition used by original UF-INSTANT firmware to write parameters, not used by modified firmware*\
 *mtd10-13 -> overlay partitions*
 
+# UART console (for access u-Boot\Linux OS in case of emergency)
+
+![UART](https://github.com/stich86/UF-Instant-Mod/blob/main/uf-instant-ttl.png)
+credits to [@robkegeenen](https://github.com/robkegeenen)
+
 # Firmware switching
 
 It's possible to switch between the two images in two ways:
