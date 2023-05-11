@@ -1,0 +1,5 @@
+c5a5eb8526f42cb3f7efb9bf88c315ed  fwu.sh
+88b02bc6355d79766fea0ff89b0b16e4  rootfs
+52ffde66f636db3876fd909b2a46cbfc  uImage
+79d0bf57e9b3165bb5a56e850df53084  fwu_ver
+1041797d8f2c31e294c1ff1f7517caef  plr.img
