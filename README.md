@@ -35,14 +35,27 @@ mtd12: 00300000 00001000 "linux"
 mtd13: 004b0000 00001000 "rootfs"
 ```
 
-*mtd0 -> u-Boot*\
-*mtd1/2 -> u-Boot Configuration*\
-*mtd3 -> /var/config mount point where all stick configurations are saved*\
-*mtd4-5 -> kernel0/rootfs0, for the first image. This can be booted setting flags "sw_commit/sw_active" to 0 on u-Boot configuration*\
-*mtd6-7 -> kernel1/rootfs2, for the second image. This can be booted setting flags "sw_commit/sw_active" to 1 on u-Boot configuration*\
-*mtd8 -> used by Europa Driver (laser controller), it contains all information about laser calibration, pay attention because is uniq for each stick!*\
-*mtd9 -> partition used by original UF-INSTANT firmware to write parameters, not used by modified firmware*\
-*mtd10-13 -> overlay partitions*
+| Device | Size | Description |  
+| ------ | ---- | ----------- |
+| mtd0 | 256KB | U-Boot |
+| mtd1 | 32KB | U-Boot Configuration 1 |
+| mtd2 | 32KB | U-Boot Configuration 2 |
+| mtd3 | 240KB | `/var/config` mount point where all stick configurations are saved |
+| mtd4 | 3MB | kernel0, for the first image. |
+| mtd5 | 4.8MB | rootfs0, for the first image. |
+| mtd6 | 3MB | kernel1, for the second image.  |
+| mtd7 | 4.8MB | rootfs2, for the second image.  |
+| mtd8 | 64KB | Europa Driver (laser controller) calibration data; **pay attention**: unique per stick! |
+| mtd9 | 64KB | Original UF-INSTANT firmware to write parameters, ignored by modified firmware |
+| mtd10 | - | overlay partition |
+| mtd11 | - | overlay partition |
+| mtd12 | - | overlay partition |
+| mtd13 | - | overlay partition |
+
+To boot the first Image (mtd4 + mtd5), set the flags `sw_commit` / `sw_active` to `0` in U-Boot configuration.
+
+To boot the second Image (mtd6 + mtd7), set the flags `sw_commit` / `sw_active` to `1` in U-Boot configuration.
+
 
 # UART console (for access u-Boot\Linux OS in case of emergency)
 
